@@ -26,6 +26,7 @@ import { AddProductComponent } from './components/admin/product/add-product/add-
 import { IndexProductComponent } from './components/admin/product/index-product/index-product.component';
 
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import {FormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +56,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
     BrowserModule,
     AppRoutingModule,
     NgxMaskModule.forRoot(),
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

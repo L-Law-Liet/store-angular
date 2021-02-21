@@ -3,18 +3,11 @@
     <button class="btn btn-dark" type="button">Apply</button>
     <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon">
       <option disabled hidden selected>Filtering...</option>
-      <option value="az">A-Z</option>
-      <option value="za">Z-A</option>
-      <option value="ascPrice">Ascending price</option>
-      <option value="descPrice">Descending price</option>
+      <option *ngFor="let filter of filters" [value]="filter.key">{{ filter.value }}</option>
     </select>
   </div>
-  <input class="form-control" list="options" placeholder="Type to search...">
+  <input [(ngModel)]="search" class="form-control" list="options" placeholder="Type to search...">
   <datalist id="options">
-    <option value="San Francisco">
-    <option value="New York">
-    <option value="Seattle">
-    <option value="Los Angeles">
-    <option value="Chicago">
+    <option *ngFor="let option of searchOptions" [value]="option">
   </datalist>
 </div>
