@@ -4,8 +4,8 @@
   </div>
   <app-slider></app-slider>
   <div class="row">
-    <div class="col-md-6 mb-2">
-      <app-product-card></app-product-card>
+    <div class="col-md-6 mb-2" *ngFor="let product of products">
+      <app-product-card [product]="product"></app-product-card>
     </div>
   </div>
 </div>

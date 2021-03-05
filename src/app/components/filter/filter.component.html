@@ -6,7 +6,8 @@
       <option *ngFor="let filter of filters" [value]="filter.key">{{ filter.value }}</option>
     </select>
   </div>
-  <input [(ngModel)]="search" class="form-control" list="options" placeholder="Type to search...">
+<!--  Attribute Directive-->
+  <input (input)="searching()" [(ngModel)]="search" class="form-control" list="options" placeholder="Type to search...">
   <datalist id="options">
     <option *ngFor="let option of searchOptions" [value]="option">
   </datalist>

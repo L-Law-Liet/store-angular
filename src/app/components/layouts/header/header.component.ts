@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {CategoryService} from '../../../services/category.service';
+import {Category} from '../../../models/category.model';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +11,22 @@ import {Router} from '@angular/router';
 export class HeaderComponent implements OnInit {
   // @ts-ignore
   router: Router;
+  categories: Category[];
   // @ts-ignore
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private service: CategoryService) {
     this.router = router;
+    this.categories = [];
   }
 
   ngOnInit(): void {
+    this.getCategories();
+  }
+
+  getCategories(): void{
+    this.service.getCategories().subscribe(res => {
+      this.categories = res;
+    });
   }
 
 }

@@ -38,11 +38,11 @@ const routes: Routes = [
     component: NewsComponent
   },
   {
-    path: 'category',
+    path: 'category/:id',
     component: ProductsComponent
   },
   {
-    path: 'product',
+    path: 'product/:id',
     component: ProductDetailsComponent
   },
   {

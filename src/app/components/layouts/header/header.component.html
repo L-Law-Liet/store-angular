@@ -16,9 +16,9 @@
             Categories
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" [routerLinkActive]="['active']" [routerLink]="'/category'">Smartphones</a></li>
-            <li><a class="dropdown-item" [routerLinkActive]="['active']" [routerLink]="'/category'">Laptops</a></li>
-            <li><a class="dropdown-item" [routerLinkActive]="['active']" [routerLink]="'/category'">TV's</a></li>
+            <li *ngFor="let category of categories">
+              <a class="dropdown-item" [routerLinkActive]="['active']" [routerLink]="'/category/'+category.id">{{ category.name }}</a>
+            </li>
           </ul>
         </li>
 

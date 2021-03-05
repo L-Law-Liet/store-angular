@@ -27,6 +27,10 @@ import { IndexProductComponent } from './components/admin/product/index-product/
 
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import {FormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { PaginationComponent } from './components/layouts/pagination/pagination.component';
+import { SalePipe } from './pipes/sale.pipe';
+import { CommaToSpacePipe } from './pipes/comma-to-space.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,13 +54,17 @@ import {FormsModule} from '@angular/forms';
     IndexCategoryComponent,
     AddCategoryComponent,
     AddProductComponent,
-    IndexProductComponent
+    IndexProductComponent,
+    PaginationComponent,
+    SalePipe,
+    CommaToSpacePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgxMaskModule.forRoot(),
     FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

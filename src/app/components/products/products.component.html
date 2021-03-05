@@ -1,13 +1,16 @@
 <div class="m-3">
   <div class="m-3">
-    <h1 class="text-center">Category</h1>
+    <!--  Structural Directive-->
+    <h1 *ngIf="filteredProducts[0]" class="text-center">{{ filteredProducts[0].category.name }}</h1>
   </div>
   <div>
-    <app-filter></app-filter>
+    <app-filter (newSearchEvent)="getProductByName($event)" [searchOptions]="options"></app-filter>
   </div>
-  <div class="row">
+
+<!--  Structural Directive-->
+  <div *ngFor="let product of filteredProducts" class="row">
     <div class="offset-md-2 col-md-8 mb-2">
-      <app-product-card></app-product-card>
+      <app-product-card [product]="product"></app-product-card>
     </div>
   </div>
 </div>

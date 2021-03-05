@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-filter',
@@ -12,17 +12,18 @@ export class FilterComponent implements OnInit {
     {key: 'ascPrice', value: 'Ascending price'},
     {key: 'descPrice', value: 'Descending price'},
   ];
-  searchOptions: string[] = [
-    'San Francisco',
-    'New York',
-    'Seattle',
-    'Los Angeles',
-    'Chicago',
-  ];
   search = '';
+  @Input()
+  searchOptions: string[] = [];
+  @Output()
+  newSearchEvent = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
+  searching(): void {
+    this.newSearchEvent.emit(this.search.toLowerCase());
+  }
 }

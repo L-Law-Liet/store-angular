@@ -1,0 +1,20 @@
+<nav aria-label="Page navigation example" *ngIf="paginator">
+  <ul class="pagination">
+    <li class="page-item" [class.disabled]="!paginator.prevPageUrl">
+      <a class="page-link" (click)="paginate(paginator.currentPage-1)" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li *ngFor="let link of paginator.links | slice:1:paginator.links.length-1" class="page-item"
+        [class.active]="link.active">
+      <a class="page-link" (click)="paginate(link.label)">{{ link.label }}</a>
+    </li>
+    <li class="page-item" [class.disabled]="!paginator.nextPageUrl">
+      <a class="page-link" (click)="paginate(paginator.currentPage+1)" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
