@@ -4,29 +4,33 @@
       <h1 class="text-center">Sign-up</h1>
     </div>
     <div class="row">
-      <form action="">
+      <form [formGroup]="form" (submit)="register()">
         <div class="offset-md-3 col-md-6">
           <div class="mb-3">
-            <label class="form-label">Name</label>
-            <input type="text" class="form-control">
+            <label class="form-label">Fullname</label>
+            <input [class.is-invalid]="form.errors?.name" formControlName="name" type="text" class="form-control">
+            <span *ngIf="form.errors?.name" class="invalid-feedback"> {{ form.errors?.name }} </span>
           </div>
           <div class="mb-3">
             <label class="form-label">Email</label>
-            <input type="email" class="form-control" placeholder="name@example.com">
+            <input [class.is-invalid]="form.errors?.email" formControlName="email" type="email" class="form-control" placeholder="name@example.com">
+            <span *ngIf="form.errors?.email" class="invalid-feedback"> {{ form.errors?.email }} </span>
           </div>
           <div class="mb-3">
             <label class="form-label">Phone</label>
-            <input type="tel" class="form-control" placeholder="+7 (777) 777-77-77" prefix="+7" mask=" (000) 000-00-00">
+            <input [class.is-invalid]="form.errors?.phone" formControlName="phone" type="tel" class="form-control" placeholder="+7 (777) 777-77-77" prefix="+7" mask=" (000) 000-00-00">
+            <span *ngIf="form.errors?.phone" class="invalid-feedback"> {{ form.errors?.phone }} </span>
           </div>
           <div class="mb-3">
             <label class="form-label">Password</label>
-            <input type="password" class="form-control">
+            <input [class.is-invalid]="form.errors?.password" formControlName="password" type="password" class="form-control">
+            <span *ngIf="form.errors?.password" class="invalid-feedback"> {{ form.errors?.password }} </span>
           </div>
           <div class="mb-3">
-            <label class="form-label">Password</label>
-            <input type="password" class="form-control">
+            <label class="form-label">Confirm Password</label>
+            <input formControlName="password_confirmation" type="password" class="form-control">
           </div>
-          <button type="submit" class="btn btn-dark">Sign-in</button>
+          <button type="submit" class="btn btn-dark">Sign-up</button>
         </div>
       </form>
     </div>

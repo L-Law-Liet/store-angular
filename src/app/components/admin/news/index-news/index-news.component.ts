@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {NewsService} from '../../../../services/news.service';
+import {Article} from '../../../../models/article.model';
 
 @Component({
   selector: 'app-index-news',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index-news.component.sass']
 })
 export class IndexNewsComponent implements OnInit {
+  // @ts-ignore
+  news: Article[];
 
-  constructor() { }
+  constructor(private service: NewsService) { }
 
   ngOnInit(): void {
+    this.service.getNews().subscribe(
+      res => {
+        console.log(res);
+        this.news = res;
+      }
+    )
   }
 
 }

@@ -4,17 +4,28 @@
       <h1 class="text-center">Sign-in</h1>
     </div>
     <div class="row">
-      <form action="">
+      <form [formGroup]="form" (submit)="login()">
         <div class="offset-md-3 col-md-6">
           <div class="mb-3">
             <label class="form-label">Email</label>
-            <input type="email" class="form-control" placeholder="name@example.com">
+            <input [class.is-invalid]="form.errors?.email" formControlName="email" type="email" class="form-control" placeholder="name@example.com">
+            <span *ngIf="form.errors?.email" class="invalid-feedback"> {{ form.errors?.email }} </span>
           </div>
           <div class="mb-3">
             <label class="form-label">Password</label>
-            <input type="password" class="form-control">
+
+            <div class="input-group">
+              <input [class.is-invalid]="form.errors?.password" formControlName="password" [type]="hide ? 'password' : 'text'" class="form-control">
+              <div class="input-group-prepend">
+                <span class="input-group-text h-100" style="width: 46px;" id="basic-addon1"><i
+                  style="cursor: pointer"
+                  (click)="hide = !hide"
+                  [ngClass]="hide ? 'fa-eye-slash' : 'fa-eye'" class="fa"></i></span>
+              </div>
+              <span *ngIf="form.errors?.password" class="invalid-feedback"> {{ form.errors?.password }} </span>
+            </div>
           </div>
-          <button type="button" class="btn btn-dark">Sign-in</button>
+          <button [disabled]="form.disabled" type="submit" class="btn btn-dark">Sign-in</button>
         </div>
       </form>
     </div>

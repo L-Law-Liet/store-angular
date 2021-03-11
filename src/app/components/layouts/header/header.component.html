@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav *ngIf="!loading" class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -21,40 +21,41 @@
             </li>
           </ul>
         </li>
-
-        <li class="nav-item">
-          <a [routerLinkActive]="['active']"  class="nav-link" [routerLink]="'/login'">Sign-in</a>
-        </li>
-        <li class="nav-item">
-          <a [routerLinkActive]="['active']" class="nav-link" [routerLink]="'/register'">Sign-up</a>
-        </li>
-
-        <li class="nav-item">
-          <a [routerLinkActive]="['active']"  class="nav-link" [routerLink]="'/cart'">Cart</a>
-        </li>
-        <li class="nav-item">
-          <a [routerLinkActive]="['active']"  class="nav-link" [routerLink]="'/favourites'">Favourites</a>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a [class.active]="this.router.url === '/cabinet'"  class="nav-link dropdown-toggle" id="profileDropdown" role="button" data-bs-toggle="dropdown">
-            Name
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="profileDropdown">
-            <li><a class="dropdown-item" [routerLinkActive]="['active']" [routerLink]="'/cabinet'">Profile</a></li>
-            <li><a class="dropdown-item">Exit</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a [class.active]="this.router.url.startsWith('/admin')"  class="nav-link dropdown-toggle" id="adminDropdown" role="button" data-bs-toggle="dropdown">
-            Admin
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="adminDropdown">
-            <li><a class="dropdown-item" [routerLinkActive]="['active']" [routerLink]="'/admin/category'">Category</a></li>
-            <li><a class="dropdown-item" [routerLinkActive]="['active']" [routerLink]="'/admin/news'">News</a></li>
-            <li><a class="dropdown-item" [routerLinkActive]="['active']" [routerLink]="'/admin/product'">Product</a></li>
-          </ul>
-        </li>
+        <div class="d-flex flex-md-row flex-column" *ngIf="!auth.isAuth()">
+          <li class="nav-item">
+            <a [routerLinkActive]="['active']"  class="nav-link" [routerLink]="'/login'">Sign-in</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLinkActive]="['active']" class="nav-link" [routerLink]="'/register'">Sign-up</a>
+          </li>
+        </div>
+        <div class="d-flex flex-md-row flex-column" *ngIf="auth.isAuth()">
+          <li class="nav-item">
+            <a [routerLinkActive]="['active']"  class="nav-link" [routerLink]="'/cart'">Cart</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLinkActive]="['active']"  class="nav-link" [routerLink]="'/favourites'">Favourites</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a [class.active]="this.router.url === '/cabinet'"  class="nav-link dropdown-toggle" id="profileDropdown" role="button" data-bs-toggle="dropdown">
+              {{ auth.user.name }}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="profileDropdown">
+              <li><a class="dropdown-item" [routerLinkActive]="['active']" [routerLink]="'/cabinet'">Profile</a></li>
+              <li><a (click)="logout()" class="dropdown-item">Exit</a></li>
+            </ul>
+          </li>
+          <li *ngIf="auth.user.admin" class="nav-item dropdown">
+            <a [class.active]="this.router.url.startsWith('/admin')"  class="nav-link dropdown-toggle" id="adminDropdown" role="button" data-bs-toggle="dropdown">
+              Admin
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="adminDropdown">
+              <li><a class="dropdown-item" [routerLinkActive]="['active']" [routerLink]="'/admin/category'">Category</a></li>
+              <li><a class="dropdown-item" [routerLinkActive]="['active']" [routerLink]="'/admin/news'">News</a></li>
+              <li><a class="dropdown-item" [routerLinkActive]="['active']" [routerLink]="'/admin/product'">Product</a></li>
+            </ul>
+          </li>
+        </div>
       </ul>
     </div>
   </div>

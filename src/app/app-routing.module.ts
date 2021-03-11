@@ -15,6 +15,9 @@ import {IndexNewsComponent} from './components/admin/news/index-news/index-news.
 import {AddNewsComponent} from './components/admin/news/add-news/add-news.component';
 import {IndexProductComponent} from './components/admin/product/index-product/index-product.component';
 import {AddProductComponent} from './components/admin/product/add-product/add-product.component';
+import {AuthGuard} from './guards/auth.guard';
+import {AdminGuard} from './guards/admin.guard';
+import {GuestGuard} from './guards/guest.guard';
 
 const routes: Routes = [
   {
@@ -23,15 +26,18 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [GuestGuard]
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate: [GuestGuard]
   },
   {
     path: 'cabinet',
-    component: CabinetComponent
+    component: CabinetComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'news',
@@ -47,11 +53,13 @@ const routes: Routes = [
   },
   {
     path: 'cart',
-    component: CartComponent
+    component: CartComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'favourites',
-    component: FavouriteComponent
+    component: FavouriteComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin',
@@ -96,6 +104,7 @@ const routes: Routes = [
         ]
       },
     ],
+    canActivate: [AuthGuard, AdminGuard]
   },
 ];
 

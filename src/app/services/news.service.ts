@@ -8,6 +8,7 @@ import {Observable} from 'rxjs';
 })
 export class NewsService {
   NEWS_URL = BaseUrl.URL + 'news';
+  NEWS_PAGEABLE = BaseUrl.URL + '/pageable';
 
   constructor(private http: HttpClient) { }
 
@@ -16,7 +17,10 @@ export class NewsService {
     if (page){
       param = '?page=' + page;
     }
-    console.log(this.NEWS_URL + param);
-    return this.http.get(this.NEWS_URL + param);
+    console.log(this.NEWS_PAGEABLE + param);
+    return this.http.get(this.NEWS_PAGEABLE + param);
+  }
+  getNews(): Observable<any>{
+    return this.http.get(this.NEWS_URL);
   }
 }

@@ -24,13 +24,18 @@ import { IndexCategoryComponent } from './components/admin/category/index-catego
 import { AddCategoryComponent } from './components/admin/category/add-category/add-category.component';
 import { AddProductComponent } from './components/admin/product/add-product/add-product.component';
 import { IndexProductComponent } from './components/admin/product/index-product/index-product.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import {FormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PaginationComponent } from './components/layouts/pagination/pagination.component';
 import { SalePipe } from './pipes/sale.pipe';
 import { CommaToSpacePipe } from './pipes/comma-to-space.pipe';
+import {AuthGuard} from './guards/auth.guard';
+import {Router} from '@angular/router';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,8 +70,12 @@ import { CommaToSpacePipe } from './pipes/comma-to-space.pipe';
     NgxMaskModule.forRoot(),
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    AuthGuard
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
