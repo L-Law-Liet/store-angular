@@ -17,6 +17,8 @@ export class FilterComponent implements OnInit {
   searchOptions: string[] = [];
   @Output()
   newSearchEvent = new EventEmitter<string>();
+  @Output()
+  sortEvent = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit(): void {
@@ -25,5 +27,10 @@ export class FilterComponent implements OnInit {
 
   searching(): void {
     this.newSearchEvent.emit(this.search.toLowerCase());
+  }
+
+  sorting(option: string): void {
+    console.log(option);
+    this.sortEvent.emit(option);
   }
 }

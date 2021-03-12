@@ -4,7 +4,7 @@
     <h1 *ngIf="filteredProducts[0]" class="text-center">{{ filteredProducts[0].category.name }}</h1>
   </div>
   <div>
-    <app-filter (newSearchEvent)="getProductByName($event)" [searchOptions]="options"></app-filter>
+    <app-filter (newSearchEvent)="getProductByName($event)" (sortEvent)="sortProducts($event)" [searchOptions]="options"></app-filter>
   </div>
 
 <!--  Structural Directive-->

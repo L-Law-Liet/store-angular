@@ -1,7 +1,7 @@
 <div class="mb-3">
   <div class="input-group mb-3">
-    <button class="btn btn-dark" type="button">Apply</button>
-    <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon">
+    <button (click)="sorting(select.value)" class="btn btn-dark" type="button">Apply</button>
+    <select #select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon">
       <option disabled hidden selected>Filtering...</option>
       <option *ngFor="let filter of filters" [value]="filter.key">{{ filter.value }}</option>
     </select>
