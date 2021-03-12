@@ -3,6 +3,7 @@ import {Product} from '../../models/product.model';
 import {ProductService} from '../../services/product.service';
 import {ActivatedRoute} from '@angular/router';
 import {SalePipe} from '../../pipes/sale.pipe';
+import {LogService} from '../../services/log.service';
 
 @Component({
   selector: 'app-products',
@@ -34,7 +35,7 @@ export class ProductsComponent implements OnInit {
     // @ts-ignore
     this.service.getProductsByCategoryId(this.id).subscribe(res => {
       this.products = res;
-      console.log(this.products);
+      console.log(this.products)
       this.filteredProducts = this.products;
       this.options = this.products.map(a => a.name);
       this.getProductByName(this.search);

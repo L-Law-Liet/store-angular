@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {User} from '../models/user.model';
 import {map, mergeMap, switchMap, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {LogService} from './log.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,9 @@ export class UserService {
   SET_AVATAR = BaseUrl.URL + 'user/avatar/';
   USERS_URL = BaseUrl.URL + 'users/';
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient,
+              private router: Router,
+              private logger: LogService) { }
 
   login(user: any): Observable<{token: string}>{
     return this.http.post<{token: string}>(this.LOGIN_URL, user).pipe(
@@ -27,6 +30,9 @@ export class UserService {
           console.log('serv', token);
           this.setToken(token);
           this.getUser();
+        },
+        error => {
+          this.logger.log(error);
         }
       )
     );
@@ -40,6 +46,9 @@ export class UserService {
           console.log('serv', token);
           this.setToken(token);
           this.getUser();
+        },
+        error => {
+          this.logger.log(error);
         }
       )
     );
