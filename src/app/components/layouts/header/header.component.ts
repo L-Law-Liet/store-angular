@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit {
     if (this.auth.isAuth()){
       this.auth.getUser().subscribe(
         res => {
+          console.log(res);
           this.auth.user = res;
           this.loading = false;
         }
