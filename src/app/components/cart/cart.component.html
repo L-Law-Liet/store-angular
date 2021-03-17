@@ -1,10 +1,26 @@
-<div class="m-3">
+<div *ngIf="!loading" class="m-3">
   <div class="m-3">
   </div>
   <h1 class="text-center">Cart</h1>
   <div class="row">
-    <div class="offset-md-2 col-md-8 mb-2">
-      <app-product-card></app-product-card>
+    <div class="offset-md-2 col-md-8 mb-2" *ngFor="let item of cart">
+      <app-product-card [product]="item.product"></app-product-card>
+      <div class="d-flex justify-content-between mt-1 mb-5">
+        <div>
+          <div><b>Cost: ${{ item.count * (item.product.price | sale: item.product.sale) }}</b></div>
+          <span>Count: {{ item.count }}</span>
+        </div>
+        <div>
+          <button (click)="remove(item.product.id)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 offset-md-2 my-5" *ngIf="cart.length > 0">
+      <h3 class="text-decoration-underline">Total: ${{total}}</h3>
+      <h3 (click)="makeOrder()" style="cursor: pointer" class="text-center btn-outline-primary border p-3 rounded">Make order</h3>
+    </div>
+    <div class="my-5" *ngIf="cart.length == 0">
+      <h3 class="text-center text-secondary border p-3 rounded">Empty</h3>
     </div>
   </div>
 </div>

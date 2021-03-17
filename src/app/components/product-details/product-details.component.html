@@ -1,4 +1,4 @@
-<div class="m-3">
+<div *ngIf="!loading" class="m-3">
   <div class="m-4">
     <h1 class="text-center">{{ product.name }}</h1>
   </div>
@@ -12,18 +12,37 @@
           {{ product.body }}
         </p>
       </div>
+      <div class="mt-3">
+        <p [ngClass]="{'text-secondary' :parseInt(product.sale) > 0}"
+           [ngStyle]="{'margin-bottom': parseInt(!(parseInt(product.sale) > 0))}">
+          <span [ngClass]="{'text-decoration-line-through' :parseInt(product.sale) > 0}">$ {{product.price | number:'1.2-2' | commaToSpace}}</span>
+        </p>
+        <p *ngIf="parseInt(product.sale) > 0" class="text-decoration-none">
+          <strong>$ {{ product.price | sale: product.sale | number:'1.2-2' | commaToSpace }}</strong>
+          <strong class="text-decoration-none alert-danger ms-2 p-1 rounded"> - {{ product.sale }}%</strong>
+        </p>
+        <p>
+          Category: <a [routerLink]="'/category/'+product.category.id">{{product.category.name}}</a>
+        </p>
+        <p>
+          Created: {{product.created_at | date: 'dd.LL.y'}}
+        </p>
+      </div>
     </div>
   </div>
-  <div class="row">
+  <div *ngIf="auth.isAuth()" class="row">
     <div class="col-md-6 mt-3">
       <button (click)="decrementCount()" class="btn btn-outline-dark me-2">-</button>Count: {{count}}<button (click)="incrementCount()" class="btn btn-outline-dark ms-2">+</button>
     </div>
     <div class="col-md-6 mt-3">
-      <button class="btn btn-dark">Add to Cart <i class="fa fa-shopping-cart"></i></button>
-      <button class="btn btn-dark ms-2"><i class="fa fa-heart"></i></button>
+      <button (click)="addToCart()" class="btn btn-dark">Add to Cart <span *ngIf="cart">({{cart.count}})</span> <i class="fa fa-shopping-cart"></i></button>
+      <button (click)="favourites()" [ngClass]="favourite ? 'btn-danger' : 'btn-dark'" class="btn ms-2"><i class="fa fa-heart"></i></button>
     </div>
   </div>
+  <div *ngIf="!auth.isAuth()" class="my-3">
+    <h3 class="text-center w-100 border border-danger rounded p-2">You must be <a [routerLink]="'/login'">logged in</a> to make a purchase</h3>
+  </div>
   <div class="mt-3">
-    <app-feedback></app-feedback>
+<!--    <app-feedback></app-feedback>-->
   </div>
 </div>

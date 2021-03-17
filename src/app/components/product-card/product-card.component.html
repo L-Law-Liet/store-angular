@@ -7,7 +7,7 @@
       </div>
 
       <div class="col-md-6 p-2">
-        <p class="card-text">{{ product.body }}</p>
+        <p class="card-text">{{ (product.body.length > 300) ? (product.body | slice:0:300)+'..' :(product.body) }}</p>
 <!--        Attribute or Style Directives-->
           <p [ngClass]="{'text-decoration-line-through' :parseInt(product.sale) > 0,
                             'text-secondary' :parseInt(product.sale) > 0}"

@@ -24,23 +24,12 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories();
-    if (this.auth.isAuth()){
-      this.auth.getUser().subscribe(
-        res => {
-          console.log(res);
-          this.auth.user = res;
-          this.loading = false;
-        }
-      );
-    }
-    else {
-      this.loading = false
-    }
   }
 
   getCategories(): void{
     this.service.getCategories().subscribe(res => {
       this.categories = res;
+      this.loading = false;
     });
   }
 
