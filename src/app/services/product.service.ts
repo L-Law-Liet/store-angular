@@ -9,6 +9,7 @@ import {Observable} from 'rxjs';
 export class ProductService {
   CATEGORY_URL = BaseUrl.URL + 'category/';
   PRODUCT_URL = BaseUrl.URL + 'products';
+  PRODUCTS_PAGEABLE = this.PRODUCT_URL + '/pageable';
   constructor(private http: HttpClient) { }
 
   getProductsByCategoryId(id: number): Observable<any>{
@@ -19,5 +20,13 @@ export class ProductService {
   }
   getProducts(): Observable<any>{
     return this.http.get(this.PRODUCT_URL);
+  }
+  getProductsPageable(page?: any): Observable<any>{
+    let param = '';
+    if (page){
+      param = '?page=' + page;
+    }
+    console.log(this.PRODUCTS_PAGEABLE + param);
+    return this.http.get(this.PRODUCTS_PAGEABLE + param);
   }
 }

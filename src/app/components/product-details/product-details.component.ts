@@ -8,6 +8,8 @@ import {UserService} from '../../services/user.service';
 import {audit} from 'rxjs/operators';
 import {FavouriteService} from '../../services/favourite.service';
 import {Favourite} from '../../models/favourite.model';
+import {FeedbackService} from '../../services/feedback.service';
+import {Feedback} from '../../models/feedback.model';
 
 @Component({
   selector: 'app-product-details',
@@ -24,11 +26,14 @@ export class ProductDetailsComponent implements OnInit {
   product: Product;
   count = 1;
   loading = true;
+  canComment = false;
+  feedbacks: Feedback[] = [];
   constructor(
     private activeRoute: ActivatedRoute,
     private service: ProductService,
     private cartService: CartService,
     private favouriteService: FavouriteService,
+    private feedbackService: FeedbackService,
     public auth: UserService,
   ) { }
 
@@ -44,6 +49,8 @@ export class ProductDetailsComponent implements OnInit {
       this.product = res;
       this.getCart(this.product.id);
       this.getFavourites(this.product.id);
+      this.getFeedbacks(this.product.id);
+      this.hasAccess();
       console.log(res);
     });
   }
@@ -124,7 +131,6 @@ export class ProductDetailsComponent implements OnInit {
       res => {
         console.log(res);
         this.favourite = res;
-        this.loading = false;
       },
       error => {
         console.log(error);
@@ -132,4 +138,29 @@ export class ProductDetailsComponent implements OnInit {
     );
   }
 
+  getFeedbacks(id: number): void{
+    this.feedbackService.getFeedbacks(id).subscribe(
+      res => {
+        console.log(res);
+        this.feedbacks = res;
+        this.loading = false;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  hasAccess(): void{
+    this.feedbackService.hasAccess(this.auth.user.id, this.product.id).subscribe(
+      res => {
+        console.log(res);
+        this.canComment = res;
+        console.log(this.canComment);
+      }
+    );
+  }
+  updateFeedback(){
+    this.getFeedbacks(this.product.id);
+    this.hasAccess();
+  }
 }

@@ -19,7 +19,7 @@
       </thead>
       <tbody>
       <tr *ngFor="let product of products; let i = index">
-        <td>{{ i+1 }}</td>
+        <td>{{ i + paginator.from }}</td>
         <td>{{ product.name }}</td>
         <td>{{ product.price }}</td>
         <td>{{ product.sale }}%</td>
@@ -30,4 +30,5 @@
       </tbody>
     </table>
   </div>
+  <app-pagination (pageEvent)="changePage($event)" [paginator]="paginator"></app-pagination>
 </div>
