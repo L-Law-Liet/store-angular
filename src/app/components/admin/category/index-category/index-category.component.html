@@ -15,11 +15,11 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let category of categories; let i = index">
+      <tr *ngFor="let category of service.categories; let i = index">
         <td>{{ i+1 }}</td>
         <td>{{ category.name }}</td>
-        <td><i class="fa fa-edit"></i></td>
-        <td><i class="fa fa-trash"></i></td>
+        <td><i [routerLink]="'edit/' + category.id" class="fa fa-edit"></i></td>
+        <td><i (click)="removeCategory(category.id)" class="fa fa-trash"></i></td>
       </tr>
       </tbody>
     </table>

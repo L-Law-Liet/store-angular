@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   categories: Category[];
   // @ts-ignore
   constructor(private router: Router,
-              private service: CategoryService,
+              public service: CategoryService,
               public auth: UserService) {
     this.router = router;
     this.categories = [];
@@ -27,10 +27,9 @@ export class HeaderComponent implements OnInit {
   }
 
   getCategories(): void{
-    this.service.getCategories().subscribe(res => {
-      this.categories = res;
-      this.loading = false;
-    });
+    this.service.updateCategories();
+    this.categories = this.service.categories;
+    this.loading = false;
   }
 
   logout(){

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from './services/user.service';
+import {CategoryService} from './services/category.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,11 @@ import {UserService} from './services/user.service';
 })
 export class AppComponent implements OnInit{
   title = 'Store';
-  constructor(private auth: UserService) {
+  constructor(private auth: UserService,
+              private categoryService: CategoryService) {
   }
   ngOnInit(): void {
+    this.categoryService.updateCategories();
     if (this.auth.isAuth()){
       // @ts-ignore
 

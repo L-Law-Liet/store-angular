@@ -11,15 +11,18 @@ export class IndexCategoryComponent implements OnInit {
   // @ts-ignore
   categories: Category[];
 
-  constructor(private service: CategoryService) { }
+  constructor(public service: CategoryService) { }
 
   ngOnInit(): void {
-    this.service.getCategories().subscribe(
+  }
+  removeCategory(id: number) {
+    this.service.removeCategory(id).subscribe(
       res => {
-        console.log(res);
-        this.categories = res;
+        this.service.updateCategories();
+      },
+      error => {
+        console.log(error);
       }
     );
   }
-
 }
