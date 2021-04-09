@@ -6,6 +6,7 @@ import {UserService} from '../services/user.service';
 @Injectable({
   providedIn: 'root'
 })
+// GuestGuard
 export class GuestGuard implements CanActivate, CanActivateChild {
   constructor(private auth: UserService, private router: Router) {
   }
