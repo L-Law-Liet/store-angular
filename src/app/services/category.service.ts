@@ -28,12 +28,13 @@ export class CategoryService {
   }
 
   updateCategory(id: number, fd: FormData): Observable<any>{
+    console.log(fd);
     return this.http.put(this.CATEGORY_URL + '/' + id, fd);
   }
   removeCategory(id: number): Observable<any>{
     return this.http.delete(this.CATEGORY_URL + `/${id}`);
   }
-  getCategory(id: number): Observable<any>{
+  getCategory(id: any): Observable<any>{
     return this.http.get(this.CATEGORY_URL + `/${id}`);
   }
 }

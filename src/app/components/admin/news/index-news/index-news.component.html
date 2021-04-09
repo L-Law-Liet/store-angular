@@ -19,9 +19,9 @@
       <tr *ngFor="let article of news; let i = index">
         <td>{{ i+1 }}</td>
         <td>{{ article.title }}</td>
-        <td><img width="150px" height="150px" [src]="article.image" alt=""></td>
-        <td><i class="fa fa-edit"></i></td>
-        <td><i class="fa fa-trash"></i></td>
+        <td><img width="180px" [src]="article.image" alt=""></td>
+        <td><i [routerLink]="'edit/' + article.id" class="fa fa-edit"></i></td>
+        <td><i (click)="removeArticle(article.id)" class="fa fa-trash"></i></td>
       </tr>
       </tbody>
     </table>

@@ -11,9 +11,7 @@ import {Category} from '../../../../models/category.model';
 })
 export class AddCategoryComponent implements OnInit {
   loading = true;
-  // @ts-ignore
   form: FormGroup
-  // @ts-ignore
   category: Category;
 
   constructor(
@@ -25,7 +23,6 @@ export class AddCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.activeRoute.snapshot.paramMap.has('id')){
-      // @ts-ignore
       this.service.getCategory(this.activeRoute.snapshot.paramMap.get('id')).subscribe(
         res => {
           console.log(res);

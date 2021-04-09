@@ -1,14 +1,25 @@
-<div class="m-3">
+<div *ngIf="!loading" class="m-3">
   <div class="m-md-5">
     <div class="m-3">
       <h1 class="text-center">News Add</h1>
     </div>
     <div class="row">
-      <form action="">
+      <form [formGroup]="form" (submit)="onSubmit()">
         <div class="offset-md-3 col-md-6">
           <div class="mb-3">
-            <label class="form-label">Name</label>
-            <input type="text" class="form-control">
+            <label class="form-label">Title</label>
+            <input [class.is-invalid]="form.errors?.title" formControlName="title"  type="text" class="form-control">
+            <span *ngIf="form.errors?.title" class="invalid-feedback"> {{ form.errors?.title }} </span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Image</label>
+            <input [class.is-invalid]="form.errors?.image" (change)="setImage($event)" type="file" accept=".jpg, .png, .jpeg" class="form-control">
+            <span *ngIf="form.errors?.image" class="invalid-feedback"> {{ form.errors?.image }} </span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Body</label>
+            <textarea [class.is-invalid]="form.errors?.body" formControlName="body"  type="text" class="form-control"></textarea>
+            <span *ngIf="form.errors?.body" class="invalid-feedback"> {{ form.errors?.body }} </span>
           </div>
           <a type="submit" [routerLink]="'/admin/news'" class="btn btn-secondary me-2">Back</a>
           <button type="submit" class="btn btn-dark">Save</button>

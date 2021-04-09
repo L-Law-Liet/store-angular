@@ -91,6 +91,10 @@ const routes: Routes = [
           {
             path: 'add',
             component: AddNewsComponent
+          },
+          {
+            path: 'edit/:id',
+            component: AddNewsComponent
           }
         ]
       },
@@ -103,6 +107,10 @@ const routes: Routes = [
           },
           {
             path: 'add',
+            component: AddProductComponent
+          },
+          {
+            path: 'edit/:id',
             component: AddProductComponent
           }
         ]

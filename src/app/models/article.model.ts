@@ -7,4 +7,7 @@ export class Article {
     public created_at: string,
     public updated_at: string,
   ) {}
+  public getProps(): any {
+    return {title: this.title, image: this.image, body: this.body}
+  }
 }

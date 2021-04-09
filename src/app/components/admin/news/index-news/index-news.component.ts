@@ -14,12 +14,26 @@ export class IndexNewsComponent implements OnInit {
   constructor(private service: NewsService) { }
 
   ngOnInit(): void {
+    this.getNews()
+  }
+  getNews() {
     this.service.getNews().subscribe(
       res => {
         console.log(res);
         this.news = res;
       }
     )
+  }
+  removeArticle(id: number){
+    this.service.removeArticle(id).subscribe(
+      res => {
+        console.log(res);
+        this.getNews();
+      },
+      error => {
+        alert('Not Deleted')
+      }
+    );
   }
 
 }
