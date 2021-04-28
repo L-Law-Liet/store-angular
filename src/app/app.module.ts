@@ -18,12 +18,6 @@ import { FilterComponent } from './components/filter/filter.component';
 import { CartComponent } from './components/cart/cart.component';
 import { FavouriteComponent } from './components/favourite/favourite.component';
 import { SliderComponent } from './components/slider/slider.component';
-import { AddNewsComponent } from './components/admin/news/add-news/add-news.component';
-import { IndexNewsComponent } from './components/admin/news/index-news/index-news.component';
-import { IndexCategoryComponent } from './components/admin/category/index-category/index-category.component';
-import { AddCategoryComponent } from './components/admin/category/add-category/add-category.component';
-import { AddProductComponent } from './components/admin/product/add-product/add-product.component';
-import { IndexProductComponent } from './components/admin/product/index-product/index-product.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 import { NgxMaskModule, IConfig } from 'ngx-mask';
@@ -34,6 +28,7 @@ import { SalePipe } from './pipes/sale.pipe';
 import { CommaToSpacePipe } from './pipes/comma-to-space.pipe';
 import {AuthGuard} from './guards/auth.guard';
 import {Router} from '@angular/router';
+import {AdminModule} from './admin/admin.module';
 
 
 @NgModule({
@@ -54,17 +49,12 @@ import {Router} from '@angular/router';
     CartComponent,
     FavouriteComponent,
     SliderComponent,
-    AddNewsComponent,
-    IndexNewsComponent,
-    IndexCategoryComponent,
-    AddCategoryComponent,
-    AddProductComponent,
-    IndexProductComponent,
     PaginationComponent,
     SalePipe,
     CommaToSpacePipe
   ],
   imports: [
+    AdminModule,
     BrowserModule,
     AppRoutingModule,
     NgxMaskModule.forRoot(),
