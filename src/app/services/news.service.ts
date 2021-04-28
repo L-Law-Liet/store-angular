@@ -36,14 +36,6 @@ export class NewsService {
   }
   updateArticle(id: number, fd: FormData): Observable<any>{
     console.log(fd);
-    fd.append("_method", "PUT");
-    let httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':'multipart/form-data'
-
-
-      })
-    }
-    return this.http.put(this.NEWS_URL + '/' + id, fd, httpOptions);
+    return this.http.put(this.NEWS_URL + '/' + id, fd);
   }
 }
