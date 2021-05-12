@@ -73,13 +73,6 @@ export class AddNewsComponent implements OnInit {
   }
 
   private updateArticle() {
-    console.log(this.form.getRawValue());
-    console.log(this.fd);
-    if (!!this.image){
-      console.log(11);
-      this.form.get('image')?.setValue(this.image);
-    }
-    console.log(this.form.getRawValue());
     this.service.updateArticle(this.article.id, this.fd).subscribe(
       res => {
         console.log(res);

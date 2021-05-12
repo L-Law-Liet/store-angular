@@ -22,6 +22,9 @@ export class CategoryService {
       }
     );
   }
+  getCategories(): Observable<any>{
+    return this.http.get(this.CATEGORY_URL);
+  }
 
   addCategory(fd: FormData): Observable<any>{
     return this.http.post(this.CATEGORY_URL, fd);

@@ -15,7 +15,7 @@ export class ProductService {
   getProductsByCategoryId(id: number): Observable<any>{
     return this.http.get(this.CATEGORY_URL + id + '/products');
   }
-  getProduct(id: number): Observable<any>{
+  getProduct(id: any): Observable<any>{
     return this.http.get(this.PRODUCT_URL + '/' + id);
   }
   getProducts(): Observable<any>{
@@ -28,5 +28,17 @@ export class ProductService {
     }
     console.log(this.PRODUCTS_PAGEABLE + param);
     return this.http.get(this.PRODUCTS_PAGEABLE + param);
+  }
+  removeProduct(id: number): Observable<any>{
+    return this.http.delete(this.PRODUCT_URL + '/' + id);
+  }
+  addProduct(fd: FormData): Observable<any>{
+    console.log('--', fd);
+    return this.http.post(this.PRODUCT_URL, fd);
+  }
+  updateProduct(id: number, fd: FormData): Observable<any>{
+    console.log(fd);
+    fd.append('_method', 'put');
+    return this.http.post(this.PRODUCT_URL + '/' + id, fd);
   }
 }

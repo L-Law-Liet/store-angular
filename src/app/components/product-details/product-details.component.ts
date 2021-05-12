@@ -47,10 +47,12 @@ export class ProductDetailsComponent implements OnInit {
     // @ts-ignore
     this.service.getProduct(this.id).subscribe(res => {
       this.product = res;
-      this.getCart(this.product.id);
-      this.getFavourites(this.product.id);
       this.getFeedbacks(this.product.id);
-      this.hasAccess();
+      if (this.auth.user){
+        this.getCart(this.product.id);
+        this.getFavourites(this.product.id);
+        this.hasAccess();
+      }
       console.log(res);
     });
   }

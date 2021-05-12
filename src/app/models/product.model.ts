@@ -9,6 +9,7 @@ export class Product {
     public body: string,
     public sale: string,
     public category: Category,
+    public category_id: string,
     public created_at: string,
     public updated_at: string,
   ) {}

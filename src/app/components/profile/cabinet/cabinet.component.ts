@@ -72,6 +72,7 @@ export class CabinetComponent implements OnInit {
     this.auth.topUpBalance(parseInt(balance)).subscribe(
       res => {
         console.log(res);
+        alert('Success!')
         this.auth.updateUser();
       }
     );

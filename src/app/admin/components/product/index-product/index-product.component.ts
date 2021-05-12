@@ -30,5 +30,16 @@ export class IndexProductComponent implements OnInit {
   changePage(page: any): void {
     this.getProductsPageable(page);
   }
+  removeProduct(id: number){
+    this.service.removeProduct(id).subscribe(
+      res => {
+        console.log(res);
+        this.getProductsPageable();
+      },
+      error => {
+        alert('Not Deleted')
+      }
+    );
+  }
 
 }

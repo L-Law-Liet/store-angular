@@ -36,6 +36,7 @@ export class NewsService {
   }
   updateArticle(id: number, fd: FormData): Observable<any>{
     console.log(fd);
+    fd.append('_method', 'put');
     return this.http.put(this.NEWS_URL + '/' + id, fd);
   }
 }

@@ -12,11 +12,12 @@ import {IndexProductComponent} from './components/product/index-product/index-pr
 import {IndexNewsComponent} from './components/news/index-news/index-news.component';
 import {AddNewsComponent} from './components/news/add-news/add-news.component';
 import {AdminGuard} from './guards/admin.guard';
-import {PaginationComponent} from '../components/layouts/pagination/pagination.component';
+import {PaginationComponent} from '../pagination/component/pagination.component';
 import {ProductService} from '../services/product.service';
 import {CategoryService} from './services/category.service';
 import {NewsService} from './services/news.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {PaginationModule} from '../pagination/pagination.module';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    PaginationModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

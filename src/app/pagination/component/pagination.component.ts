@@ -1,7 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {Link} from '../../../models/link.model';
-import {Paginator} from '../../../models/paginator.model';
-import {NewsService} from '../../../services/news.service';
+import {Paginator} from '../../models/paginator.model';
 
 @Component({
   selector: 'app-pagination',
@@ -14,7 +12,6 @@ export class PaginationComponent implements OnInit, OnChanges {
   @Output()
   pageEvent = new EventEmitter<string>();
   constructor(
-    private service: NewsService
   ) { }
 
   ngOnInit(): void {

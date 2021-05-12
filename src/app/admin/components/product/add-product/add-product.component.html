@@ -1,14 +1,42 @@
-<div class="m-3">
+<div *ngIf="!loading" class="m-3">
   <div class="m-md-5">
     <div class="m-3">
       <h1 class="text-center">Product Add</h1>
     </div>
     <div class="row">
-      <form action="">
+      <form [formGroup]="form" (submit)="onSubmit()">
         <div class="offset-md-3 col-md-6">
           <div class="mb-3">
             <label class="form-label">Name</label>
-            <input type="text" class="form-control">
+            <input [class.is-invalid]="form.errors?.name" formControlName="name"  type="text" class="form-control">
+            <span *ngIf="form.errors?.name" class="invalid-feedback"> {{ form.errors?.name }} </span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Price</label>
+            <input [class.is-invalid]="form.errors?.price" formControlName="price"  type="text" class="form-control">
+            <span *ngIf="form.errors?.price" class="invalid-feedback"> {{ form.errors?.price }} </span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Sale</label>
+            <input [class.is-invalid]="form.errors?.sale" formControlName="sale"  type="text" class="form-control">
+            <span *ngIf="form.errors?.sale" class="invalid-feedback"> {{ form.errors?.sale }} </span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Image</label>
+            <input [class.is-invalid]="form.errors?.image" (change)="setImage($event)" type="file" accept=".jpg, .png, .jpeg" class="form-control">
+            <span *ngIf="form.errors?.image" class="invalid-feedback"> {{ form.errors?.image }} </span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Body</label>
+            <textarea [class.is-invalid]="form.errors?.body" formControlName="body"  type="text" class="form-control"></textarea>
+            <span *ngIf="form.errors?.body" class="invalid-feedback"> {{ form.errors?.body }} </span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Category</label>
+            <select [class.is-invalid]="form.errors?.category_id" formControlName="category_id" class="form-select">
+              <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+            </select>
+            <span *ngIf="form.errors?.category_id" class="invalid-feedback"> {{ form.errors?.category_id }} </span>
           </div>
           <a type="submit" [routerLink]="'/admin/product'" class="btn btn-secondary me-2">Back</a>
           <button type="submit" class="btn btn-dark">Save</button>

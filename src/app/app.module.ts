@@ -23,12 +23,12 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { PaginationComponent } from './components/layouts/pagination/pagination.component';
 import { SalePipe } from './pipes/sale.pipe';
 import { CommaToSpacePipe } from './pipes/comma-to-space.pipe';
 import {AuthGuard} from './guards/auth.guard';
 import {Router} from '@angular/router';
 import {AdminModule} from './admin/admin.module';
+import {PaginationModule} from './pagination/pagination.module';
 
 
 @NgModule({
@@ -49,12 +49,12 @@ import {AdminModule} from './admin/admin.module';
     CartComponent,
     FavouriteComponent,
     SliderComponent,
-    PaginationComponent,
     SalePipe,
     CommaToSpacePipe
   ],
   imports: [
     AdminModule,
+    PaginationModule,
     BrowserModule,
     AppRoutingModule,
     NgxMaskModule.forRoot(),

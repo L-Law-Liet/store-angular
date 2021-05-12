@@ -24,11 +24,11 @@
         <td>{{ product.price }}</td>
         <td>{{ product.sale }}%</td>
         <td><img width="150px" height="150px" [src]="product.image" alt=""></td>
-        <td><i class="fa fa-edit"></i></td>
-        <td><i class="fa fa-trash"></i></td>
+        <td><i [routerLink]="'edit/' + product.id" class="fa fa-edit"></i></td>
+        <td><i (click)="removeProduct(product.id)" class="fa fa-trash"></i></td>
       </tr>
       </tbody>
     </table>
   </div>
-<!--  <app-pagination (pageEvent)="changePage($event)" [paginator]="paginator"></app-pagination>-->
+  <app-pagination (pageEvent)="changePage($event)" [paginator]="paginator"></app-pagination>
 </div>
